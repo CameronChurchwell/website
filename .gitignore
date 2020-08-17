@@ -11,3 +11,5 @@ doc/api/
 #Other things to ignore
 env/
 .DS_Store
+/assets/css/
+/server/api/secret.txt
