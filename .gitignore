@@ -11,5 +11,8 @@ doc/api/
 #Other things to ignore
 env/
 .DS_Store
+.vscode/
 /assets/css/
-/server/api/secret.txt
+/server/secret.txt
+__pycache__/
+
