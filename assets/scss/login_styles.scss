@@ -1,0 +1,32 @@
+@use "base_styles" as b;
+
+#main-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+}
+
+#login-box {
+    width: 75%;
+    height: 50vh;
+    background-color: b.$secondary-color;
+    padding: 5%;
+
+    .label-input-container {
+        display: inline;
+
+
+        input {
+            width: 50%;
+            border: solid;
+            border-width: 1px;
+            border-color: b.$tertiary-color;
+            background-color: b.$primary-color;
+            color: white;
+            outline-color: b.$tertiary-color;
+        }
+
+    }
+
+}

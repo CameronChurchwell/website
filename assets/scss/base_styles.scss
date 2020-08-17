@@ -1,0 +1,53 @@
+$font-stack: Arial, Helvetica;
+$primary-color: #212121;
+$secondary-color: #4a4a4a;
+$tertiary-color: #ff9100;
+
+html {
+    font: $font-stack;
+    color: white;
+}
+
+body {
+    background-color: $primary-color;
+}
+
+nav {
+
+    background-color: $secondary-color;
+    font-size: x-large;
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    li {
+        display: inline-block;
+        color: $tertiary-color;
+
+        $p: &;
+
+        &.current {
+            background-color: $tertiary-color;
+            > a{
+                color:white;
+            }
+        }
+
+        a {
+            display: block;
+            padding: 8px 18px;
+            text-decoration: none;
+    
+            color: $tertiary-color;
+    
+            &:hover {
+                background-color: black;
+            }
+        }
+    }
+
+    
+}

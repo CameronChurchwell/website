@@ -1,0 +1,24 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+
+<link href="{{url_for('static', filename='css/login_styles.css')}}" rel="stylesheet">
+<script defer src="{{ url_for('dart_static', file_name='login.dart.js') }}"></script>
+
+<div id="main-content">
+    <div id="login-box">
+        <form id="login-form">
+            <div class="label-input-container">
+                <label for="email">Email:</label>
+                <input type="email", id="email"></input><br><br>
+            </div>
+            <div class="label-input-container">
+                <label for="password">Password:</label>
+                <input type="password", id="password"><br><br>
+            </div>
+            <button id="submit-credentials">Submit!</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

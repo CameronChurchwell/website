@@ -1,0 +1,9 @@
+{% extends "base_template.html" %}
+
+{% set active_tab = "Blog" %}
+
+{% block content %}
+
+<script defer src="{{ url_for('dart_static', file_name='blog_main_page.dart.js') }}"></script>
+
+{% endblock %}

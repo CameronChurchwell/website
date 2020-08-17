@@ -82,7 +82,7 @@ else
     echo "Making env directory"
     mkdir env
     echo "Creating website environment"
-    virutalenv ./env/websiteEnv
+    virtualenv env/websiteEnv
     echo "$green Created virtualenv$reset"
 fi
 
