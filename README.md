@@ -10,7 +10,7 @@ In order to run the build servers run the following commands in seperate termina
 
 Then to run the Flask server itself run the following command in the server directory:
 
-```FLASK_APP=web_app.py FLASK_DEBUG=1 python -m flask run -p 6060```
+```FLASK_APP=web_app.py FLASK_DEBUG=1 python -m flask run -p 5050```
 
 Created from templates made available by Stagehand under a BSD-style
 [license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
