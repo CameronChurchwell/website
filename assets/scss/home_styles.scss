@@ -1,0 +1,33 @@
+@use "base_styles" as b;
+
+@use "blog_post_styles";
+
+#main-content {
+    padding-top: 5vh;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-bottom: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#content-container {
+    display: block;
+    background-color: b.$secondary-color;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    border-radius: 5px;
+}
+
+#home-image {
+    background-color: none;
+    max-width: 100%;
+    max-height: auto;
+}

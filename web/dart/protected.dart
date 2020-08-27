@@ -1,40 +1,11 @@
 import 'package:http/http.dart' as http;
+import 'getUri.dart' as getUri;
 import 'dart:html';
 
-Future<http.Response> protected_get(url) async {
-  //try to get on url
-  //if response success return response
-  //else (401) try to get a new access token
-    //or if user not authorized (403) return that instead
-  //if getting a new access token succeeded, try accessing the 
-  //else return that response, which will tell the client to redirect to login
-  var response = await http.get(url);
-  if (response.statusCode == 200) {
-    print('Request succeeded!');
-    return response;
-  } else if (response.statusCode == 401) { //Invalid access_token
-    var baseURL = url.split('//')[0] + '//' + (url.split('//')[1].split('/'))[0]; //Base site url
-    response = await http.get(baseURL + '/api/refresh_token_send/get_access_token/'); //Try to get new access_token using refresh_token
-    if (response.statusCode == 401) { //Invalid refresh_token
-      print('Bad refresh token!');
-      return response;
-    } else if (response.statusCode == 200) { //Got new access_token, recurse to try again getting protected resource
-      print('Got access token, trying again!');
-      return await protected_get(url);
-    } else { //This really shouldn't happen, but just in case
-      return response;
-    }
-  } else if (response.statusCode == 403) { //User permission denied
-    return response;
-  } else { //Not 401 or 403. Could be a different error, but auth was not the issue
-    return response;
-  }
-}
-
 Future<bool> user_logged_in() async {
-  var currentURL = window.location.href;
-  var baseURL = currentURL.split('//')[0] + '//' + (currentURL.split('//')[1].split('/'))[0];
-  var response = await protected_get(baseURL + '/api/protected/user_logged_in/');
+  var uri = getUri.uriFromPath('/api/protected/user_logged_in/');
+  var request = http.Request('GET', uri);
+  var response = await protected_request_send(request);
   print(response.statusCode);
   if (response.statusCode == 200) {
     return true;
@@ -43,6 +14,33 @@ Future<bool> user_logged_in() async {
   }
 }
 
-Future<http.Response> protected_post(url, body) {
-  return null;
+Future<http.Response> send_request(http.BaseRequest request) async {
+  var responseStream = await request.send();
+  var response = await http.Response.fromStream(responseStream);
+  return response;
+}
+
+Future<http.Response> protected_request_send(http.BaseRequest request) async {
+  var response = await send_request(request); //Get Response
+  if (response.statusCode == 200) { //Success!
+    return response;
+  } else if (response.statusCode == 401) { //Invalid Access Token
+    var accessTokenUri = getUri.uriFromPath('/api/refresh_token_send/get_access_token');
+    var accessTokenRequest = http.Request('GET', accessTokenUri);
+    var accessTokenResponse = await send_request(accessTokenRequest);
+    if (accessTokenResponse.statusCode == 200) { //Got New Access Token, Trying Again
+      var newRequest = http.Request(request.method, request.url);
+      var response = await send_request(newRequest); //Get Response
+      if (response.statusCode == 200) { //Success!
+        return response;
+      } else { //Invalid Access Token (this shouldn't really happen, we just got a new one)
+        return response;
+      }
+    } else { //Invalid Refresh Token (user not signed in)
+      return response;
+    }
+  } else if (response.statusCode == 403) { //User Missing Permissions
+    return response;
+  }
+  return response;
 }

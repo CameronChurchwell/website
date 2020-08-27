@@ -34,7 +34,7 @@ def get_access_token(): #Use refresh token to get access token and set to cookie
         if validate_refresh_token(request.cookies["refresh_token"]):
             uid = jwt.decode(request.cookies["refresh_token"], secret, algorithms=["HS256"])["uid"]
             access_token, exp = make_access_token_and_expiration(uid)
-            response.set_cookie("access_token", value=access_token, httponly=True, path="/api/protected/") #TODO add expires=exp, secure=True
+            response.set_cookie("access_token", value=access_token, httponly=True, path="/api/protected/", expires=exp, secure=True)
         else:
             #response = make_response("Bad Refresh Token")
             abort(401)
@@ -110,21 +110,7 @@ def require_auth(func):
         return func()
     return wrapper
 
-@token_api.route("/refresh_token_send/delete_refresh_token", methods=["POST"])
-def delete_refresh_token():
-    print("delete refresh token")
-    #response = make_response(redirect(url_for("delete_access_token")))
-    #delete from database
-    #delete cookie
-    #return response
-    return "True"
-
-@token_api.route("/protected/delete_access_token", methods=["GET"])
-def delete_access_token():
-    response = make_response("True")
-    print("delete access token")
-    return "True"
-
+#Helper function to test if user is logged in
 @token_api.route("/protected/user_logged_in/", methods=["GET"])
 @require_auth
 def user_logged_in():

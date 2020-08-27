@@ -3,7 +3,7 @@ $primary-color: #212121;
 $secondary-color: #4a4a4a;
 $tertiary-color: #ff9100;
 
-html {
+* {
     font: $font-stack;
     color: white;
 }
@@ -14,6 +14,7 @@ body {
 
 nav {
 
+    border-radius: 5px;
     background-color: $secondary-color;
     font-size: x-large;
 

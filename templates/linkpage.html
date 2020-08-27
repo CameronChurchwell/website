@@ -1,0 +1,27 @@
+{% extends "base_template.html" %}
+
+{% set active_tab = "Links" %}
+
+{% block content %}
+
+<link href="{{url_for('static', filename='css/blog_post_styles.css')}}" rel="stylesheet">
+
+<div id="content-container">
+    <div id="main-content">
+{% filter markdown %}
+
+# Links
+
+## [GitHub](https://github.com/CameronChurchwell)
+
+## [Linkedin](https://www.linkedin.com/in/cameron-churchwell-5b25201b5/)
+
+## [Email](mailto:cameronchurchwell2024@u.northwestern.edu)
+
+{% endfilter %}
+    </div>
+</div>
+
+
+
+{% endblock %}

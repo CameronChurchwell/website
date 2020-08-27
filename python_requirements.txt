@@ -10,3 +10,4 @@ SQLAlchemy-Utils==0.34.2
 pylint-flask==0.6
 atomicwrites==1.4.0
 PyJWT==1.7.1
+Flask-Markdown==0.3

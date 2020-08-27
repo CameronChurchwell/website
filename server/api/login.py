@@ -1,4 +1,4 @@
-from flask import Blueprint, request, make_response, redirect, url_for
+from flask import Blueprint, request, make_response, redirect, url_for, abort
 from flask_bcrypt import Bcrypt
 import ast
 import json
@@ -6,7 +6,7 @@ import json
 from db_setup import get_session, engine
 from models import UsersModel, UsersRefreshTokensModel
 
-from api.tokens import make_refresh_token, delete_access_token, delete_refresh_token
+from api.tokens import make_refresh_token
 
 ###---Database-Setup---###
 db_session = get_session()
@@ -33,7 +33,7 @@ def login_request(): #Email and Password validation and refresh token assignment
         if password_match: #Password matches
             response = make_response("True")
             refresh_token = make_refresh_token(data["email"])
-            response.set_cookie("refresh_token", refresh_token, httponly=True, path="/api/refresh_token_send/") #TODO add expires=exp, secure=True
+            response.set_cookie("refresh_token", refresh_token, httponly=True, path="/api/refresh_token_send/", expires=exp, secure=True)
             return response
 
         else: #Password did not match

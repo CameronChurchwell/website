@@ -1,0 +1,18 @@
+{% extends "blogmainpage.html" %}
+
+{% set active_tab = "Blog" %}
+
+{% block content %}
+
+<link href="{{url_for('static', filename='css/form_styles.css')}}" rel="stylesheet">
+<script defer src="{{ url_for('dart_static', file_name='upload.dart.js') }}"></script>
+
+<div id="form-container">
+    <form id="upload-form">
+        <label for="file-input">Choose a .zip file to upload!</label>
+        <input type="file" id="file-input"><br>
+        <input type="submit" id="submit-button" value="Submit">
+    </form>
+</div>
+
+{% endblock %}

@@ -6,4 +6,23 @@
 
 <script defer src="{{ url_for('dart_static', file_name='blog_main_page.dart.js') }}"></script>
 
+<link href="{{url_for('static', filename='css/blog_post_styles.css')}}" rel="stylesheet">
+
+<div id=content-container>
+    <div id=main-content>
+        <h1>My Blog Posts</h1>
+
+        {% filter markdown %}
+
+        {{post_list}}
+
+        {% endfilter %}
+
+    </div>
+</div>
+
+
+
+
+
 {% endblock %}

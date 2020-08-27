@@ -12,13 +12,13 @@
             ("Home", "/"),
             ("Blog", "/blog/"),
             ("Bio", "/bio/"),
-            ("Links", "/links/")
+            ("Links", "/links/"),
+            ("Login", "/login/")
             ] %}
         <ul>
             {% for section, href in sections %}
             <li {% if active_tab == section %} class="current" {% endif %}><a href="{{ href }}">{{ section }}</a></li>
             {% endfor %}
-            <li><a href="Test">Test</a></li>
         </ul>
     </nav>
 

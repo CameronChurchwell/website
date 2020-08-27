@@ -1,0 +1,40 @@
+@use "base_styles" as b;
+
+#form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+}
+
+form {
+    background-color: b.$secondary-color;
+    padding: 5vw 5vh;
+    font-size: x-large;
+    display: block;
+    width: 75vw;
+    height: 20vh;
+
+
+
+    button {
+        background-color: b.$secondary-color;
+        color: b.$tertiary-color;
+        font-size: large;
+    }
+
+    label {
+        color: b.$tertiary-color;
+    }
+
+    input {
+        width: 50%;
+        border: solid;
+        border-width: 1px;
+        border-color: b.$tertiary-color;
+        background-color: b.$primary-color;
+        color: white;
+        outline-color: b.$tertiary-color;
+    }
+
+}

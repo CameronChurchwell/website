@@ -1,4 +1,5 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy.dialects.postgresql import BYTEA
 from db_setup import Base
 
 
@@ -15,4 +16,24 @@ class UsersRefreshTokensModel(Base):
     id = Column(Integer, primary_key=True, index=True)
     email = Column(String)
     refresh_token = Column(String)
+
+class BlogPost(Base):
+    __tablename__ = "blog_posts"
+
+    id = Column(Integer, primary_key=True, index=True)
+    uid = Column(Integer)
+    title = Column(String)
+    markdown = Column(String)
+    posted = Column(DateTime)
+
+class BlogPostResources(Base):
+    __tablename__ = "blog_post_resources"
+
+    id = Column(Integer, primary_key=True, index=True)
+    pid = Column(Integer)
+    rid = Column(Integer)
+    data = Column(BYTEA)
+    ext = Column(String)
+
+
     

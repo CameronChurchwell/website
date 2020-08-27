@@ -1,0 +1,54 @@
+{% extends "blogmainpage.html" %}
+
+{% set active_tab = "Blog" %}
+
+{% block content %}
+
+<link href="{{url_for('static', filename='css/blog_post_styles.css')}}" rel="stylesheet">
+
+{% filter markdown %}
+
+<script defer src="{{ url_for('dart_static', file_name='blog_main_page.dart.js') }}"></script>
+
+#Markdown Test
+
+Hello, this is a test of my website's markdown capability!
+
+This is a normal paragraph, so you can expect most text to look like this!
+
+~~~{.python}
+def foo(bar):
+    print(bar)
+    print("test!")
+    return True
+~~~
+
+~~strikethrough~~
+
+<h1>Test</h1>
+
+# Header Size 1
+
+## Header Size 2
+
+### Header Size 3
+
+#### Header Size 4
+
+##### Header Size 5
+
+###### Header Size 6
+
+> This is an example blockquote!
+
+This is a [Link Example](https://google.com) which is embedded in a sentence!
+
+# This is a [Link Example](https://google.com) which is embedded in a header
+
+> # This is a header in a blockquote
+
+![favicon](../../favicon.ico)
+
+{% endfilter %}
+
+{% endblock %}

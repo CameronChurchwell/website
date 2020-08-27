@@ -4,6 +4,26 @@
 
 {% block content %}
 
-<p>blah</p>
+<link href="{{url_for('static', filename='css/blog_post_styles.css')}}" rel="stylesheet">
+
+<div id="content-container">
+    <div id="main-content">
+{% filter markdown %}
+
+# Who is Cameron Churchwell?
+
+Hello! My name is Cameron Churchwell. Welcome to my website! I recently graduated from [Niles North High School,](https://www.niles-hs.k12.il.us/north) and this year I will be a freshman CS student at Northwestern's [McCormick School of Engineering.](https://www.mccormick.northwestern.edu/)
+
+I first started programming the summer before sixth grade, so I've been programming for about seven years now. When I finish college, I will have been programming for half of my life! I've learned a bunch of different languages from C++ to Swift to Lua, but most of the time I choose to work in Python so I can focus on the given project rather than on the language.
+
+You can find many of my projects summarized in blog posts on this site, though by no means is this a exhaustive list.
+
+Outside of programming, I generally spend my time learning new things, playing games with my friends, spending time with my family, practicing trombone, and reading.
+
+{% endfilter %}
+    </div>
+</div>
+
+
 
 {% endblock %}
