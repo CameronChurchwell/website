@@ -33,7 +33,7 @@ def login_request(): #Email and Password validation and refresh token assignment
         if password_match: #Password matches
             response = make_response("True")
             refresh_token = make_refresh_token(data["email"])
-            response.set_cookie("refresh_token", refresh_token, httponly=True, path="/api/refresh_token_send/", expires=exp, secure=True)
+            response.set_cookie("refresh_token", refresh_token, httponly=True, path="/api/refresh_token_send/", secure=True)
             return response
 
         else: #Password did not match

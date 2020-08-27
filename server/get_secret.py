@@ -1,4 +1,5 @@
 from atomicwrites import atomic_write
+import secrets
 
 def get_secret(): #Get secret from file (I want to be able to put this on github)
     try:
