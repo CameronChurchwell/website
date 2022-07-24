@@ -1,12 +1,17 @@
-from flask import Flask, render_template, send_from_directory, abort, send_file
-from flask_cors import CORS, cross_origin
-from flaskext.markdown import Markdown
-import os
+"""Main file for website, contains endpoints"""
 
+#Import Blueprints
 from io import BytesIO
+from api.login import login_api
+from api.tokens import token_api
+from api.upload import upload_api
 
-from db_setup import get_session, engine
-from models import UsersModel, BlogPost, BlogPostResources
+from flask import Flask, render_template, send_from_directory, abort, send_file
+from flask_cors import CORS
+from flaskext.markdown import Markdown
+
+from db_setup import get_session
+from models import BlogPost, BlogPostResources
 
 app = Flask(__name__, static_folder="../assets", template_folder="../templates")
 
@@ -14,16 +19,13 @@ CORS(app, origins="http://localhost:5050", supports_credentials=True)
 
 md = Markdown(app, extensions=['fenced_code', 'codehilite'])
 
-dart_dir = "../build/web/dart/"
+DART_DIR = "../build/web/dart/"
+JS_DIR = "../buid/js/"
 #dart_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../build/web/dart')
 
 ###---Database-Setup---###
 db_session = get_session()
 
-#Import Blueprints
-from api.login import login_api
-from api.tokens import token_api
-from api.upload import upload_api
 
 #Register Blueprints
 app.register_blueprint(login_api, url_prefix="/api")
@@ -32,42 +34,33 @@ app.register_blueprint(upload_api, url_prefix="/api")
 
 ####---Routes---###
 
-#Favicon
-@app.route("/favicon.ico", methods=["GET"])
-def favicon():
-    return send_from_directory("../assets", "favicon.ico")
+root_assets = [
+    "favicon.ico",
+    "home.jpeg",
+]
 
-@app.route("/home.jpeg", methods=["GET"])
-def homeimage():
-    return send_from_directory("../assets", "home.jpeg")
+@app.route('/<any(' + str(root_assets)[1:-1] + '):asset>/', methods=["GET"])
+def root_asset(asset):
+    """Serve root assets to browser"""
+    return send_from_directory("../assets/", asset)
 
-#Home Page
+root_pages = [
+    "home",
+    "bio",
+    "links",
+    "login",
+    "logout",
+]
+
 @app.route("/", methods=["GET"])
-@app.route("/home/", methods=["GET"])
-def homepage():
-    return render_template("homepage.html", test="bruh")
-
-#Bio Page
-@app.route("/bio/", methods=["GET"])
-def biopage():
-    return render_template("biopage.html")
-
-#Link Page
-@app.route("/links/", methods=["GET"])
-def linkpage():
-    return render_template("linkpage.html")
-
-#Login Page
-@app.route("/login/", methods=["GET"])
-def loginpage():
-    return render_template("loginpage.html")
-
-@app.route("/logout/", methods=["GET"])
-def logoutpage():
-    return render_template("logoutpage.html")
+@app.route('/<any(' + str(root_pages)[1:-1] + '):page_prefix>/', methods=["GET"])
+def root_page(page_prefix="home"):
+    """Serve root page to browser based on url"""
+    return render_template(page_prefix + "page.html")
 
 @app.route("/blog/", methods=["GET"])
 def blogpage():
+    """Serve root blog page"""
     post_query = db_session.query(BlogPost)
     list_string = "\n"
     for post in post_query:
@@ -76,24 +69,25 @@ def blogpage():
         list_string += new_part
     return render_template("blogmainpage.html", post_list=list_string)
 
-#Serve Dart Files
 @app.route("/dart/<path:file_name>", methods=["GET"])
 def dart_static(file_name):
-    return send_from_directory(dart_dir, file_name)
+    """Serve Dart files"""
+    return send_from_directory(DART_DIR, file_name)
 
-#Serve Dart Packages
 @app.route("/packages/<path:path>", methods=["GET"])
 def dart_packages(path):
+    """Serve Dart packages"""
     return send_from_directory("../build/packages/", path)
+
+@app.route("/js/<path:file_name>", methods=["GET"])
+def js_static(file_name):
+    """Serve Javascript files"""
+    return send_from_directory(JS_DIR, file_name)
+
 
 @app.route("/test/markdown/", methods=["GET"])
 def markdown_test():
     return render_template("markdowntest.html")
-
-@app.route("/test/get/", methods=["GET"])
-def get_test():
-    print("hit get_test")
-    return "True"
 
 @app.route("/blog/upload/", methods=["GET"])
 def upload_test():

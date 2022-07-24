@@ -93,21 +93,6 @@ echo "Installing python packages"
 pip3 install --no-cache-dir -r ./python_requirements.txt
 echo "$green Installed required python packages!"
 
-#Install Dart
-if [[ $(command -v dart) == "" ]]; then
-    echo "$red Did not find Dart! Installing...$green"
-    brew tap dart-lang/dart
-    brew install dart
-    pub upgrade
-    pub get
-    echo "$green Installed Dart$reset"
-else
-    echo "Found Dart! Updating..."
-    brew upgrade dart
-    pub get
-    echo "$green Updates complete$reset"
-fi
-
 #Install Sass
 if [[ $(command -v sass) == "" ]]; then
     echo "$red Did not find Sass! Installing...$reset"

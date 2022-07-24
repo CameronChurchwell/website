@@ -1,14 +1,14 @@
-from flask import Blueprint, request, Response
+"""Module handling blog post uploads for api"""
 
-import jwt
-
+import io
 from datetime import datetime
 
 from zipfile import ZipFile
-import re
-import io
+from flask import Blueprint, request, abort, redirect, url_for
 
-from db_setup import get_session, engine
+import jwt
+
+from db_setup import get_session
 from models import BlogPost, BlogPostResources
 
 from api.tokens import require_auth
@@ -22,16 +22,21 @@ db_session = get_session()
 @upload_api.route("/protected/blog/upload/", methods=["POST"])
 @require_auth
 def blog_upload():
-    if 'zip_file' in request.form.keys():
-        file_data = bytearray([int(i) for i in request.form['zip_file'].strip('][').split(', ') ])
-        binary_file_object = io.BytesIO(file_data)
+    """Upload blog post"""
+    if 'zip-file' in request.files.keys():
+        temp_file_object = request.files['zip-file'].stream
+        binary_file_object = io.BytesIO(temp_file_object.read())
+        print(binary_file_object.__class__)
+        # file_data = bytearray([int(i) for i in request.form['file-input'].strip('][').split(', ') ])
+        # print(file_data)
+        # binary_file_object = io.BytesIO(file_data)
 
         with ZipFile(binary_file_object) as archive:
-
             #Get File Names
             file_names = []
             files = []
             folder_paths = []
+            print(archive.namelist)
             for name in archive.namelist():
                 if name[:9] == "__MACOSX/": #Ignore MacOS metadata files created during compression
                     continue
@@ -154,5 +159,5 @@ def blog_upload():
 
             db_session.commit()
 
-        return "True"
-    return "False"
+            return redirect(url_for('serve_post', pid=post_row.id))
+    abort(500)

@@ -12,7 +12,8 @@ doc/api/
 env/
 .DS_Store
 .vscode/
-/assets/css/
+assets/css/
+assets/js/
 /server/secret.txt
 __pycache__/
-
+node_modules/
