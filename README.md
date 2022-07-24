@@ -1,6 +1,6 @@
 # Cameron Churchwell's website
 
-A simple website I have created to share my creations with those who may be interested!
+A simple [website](https://www.cameronchurchwell.com) I have created to share my creations with those who may be interested!
 
 Run the dev_install.sh script to install the necessary dependencies.
 

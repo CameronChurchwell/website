@@ -66,5 +66,4 @@ def logout_request():
     #Remove cookies
     response.delete_cookie("refresh_token", path="/api/refresh_token_send/")
     response.delete_cookie("access_token", path="/api/protected/")
-
     return response
