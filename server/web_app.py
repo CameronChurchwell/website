@@ -50,13 +50,14 @@ root_pages = [
     "links",
     "login",
     "logout",
+    "test",
 ]
 
 @app.route("/", methods=["GET"])
 @app.route('/<any(' + str(root_pages)[1:-1] + '):page_prefix>/', methods=["GET"])
 def root_page(page_prefix="home"):
     """Serve root page to browser based on url"""
-    return render_template(page_prefix + "page.html")
+    return render_template(page_prefix + "page.html.j2")
 
 @app.route("/blog/", methods=["GET"])
 def blogpage():

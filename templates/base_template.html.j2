@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% set sections = [
+    ("Home", "/"),
+    ("Blog", "/blog/"),
+    ("Bio", "/bio/"),
+    ("Links", "/links/"),
+    ("Login", "/login/")
+] %}
+<html>
+    <head>
+        <title>Cameron Churchwell's Website</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- <link href="{{url_for('static', filename='css/base_styles.css')}}" rel="stylesheet"> -->
+        <link href="{{url_for('static', filename='build/foundation_styles.min.css')}}" rel="stylesheet">
+    </head>
+    <body>
+
+        <!-- <nav>
+            {% set sections = [
+                ("Home", "/"),
+                ("Blog", "/blog/"),
+                ("Bio", "/bio/"),
+                ("Links", "/links/"),
+                ("Login", "/login/")
+                ] %}
+            <ul>
+                {% for section, href in sections %}
+                <li {% if active_tab == section %} class="current" {% endif %}><a href="{{ href }}">{{ section }}</a></li>
+                {% endfor %}
+            </ul>
+        </nav> -->
+        <div id="top-bar-container" data-sticky-container>
+            <div data-sticky data-margin-top="0" data-sticky-on="small">
+                <div class="title-bar" data-responsive-toggle="top-main-menu" data-hide-for="medium" style="height: 3em;">
+                    <button class="menu-icon" type="button" data-toggle="top-dropdown"></button>
+                    <div class="title-bar-title">Cameron Churchwell</div>
+                    <div id="top-dropdown" data-dropdown data-close-on-click="true" data-auto-focus="true">
+                        <ul class="vertical menu">
+                            {% for section, href in sections %}
+                            <li {% if active_tab == section %} class="current" {% endif %}><a href="{{ href }}">{{ section }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div id="top-main-menu">
+                    <div class="top-bar" style="height: 3em;">
+                        <div class="top-bar-title">
+                            Cameron Churchwell
+                        </div>
+                        <div>
+                            <div class="top-bar-left">
+                                <ul class="menu">
+                                    {% for section, href in sections %}
+                                    <li {% if active_tab == section %} class="current" {% endif %}><a href="{{ href }}">{{ section }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="top-bar-right">
+                <!-- add light mode toggle -->
+                <!-- add logged in indicator -->
+                <!-- add search? -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% block content %}{% endblock %}
+
+    </body>
+</html>
