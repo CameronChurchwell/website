@@ -13,67 +13,7 @@
         <div class="grid-x grid-padding-x" style="height: 100%;">
             <div id="shape-container-cell">
                 <div id="shape-container" data-sticky-container data-dynamic-height="false">
-                    <svg id="shape-sticky" class="sticky" data-sticky data-anchor="shape-container-cell" data-margin-top="3" viewbox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="shapeGradient" x1="100%" y1="0%" x2="0%" y2="100%" spreadMethod="pad">
-                            {# <linearGradient id="shapeGradient" x1="100%" y1="0" x2="100%" y2="0%" spreadMethod="pad"> #}
-                                {# <stop offset="5%" stop-color="#ffffff"/> #}
-                                {# <stop offset="95%" stop-color="#ff7700" /> #}
-                                {# <stop id="end_outer" offset="0%" stop-color="#ff7700"/>
-                                <stop id="end_inner" idoffset="5%" stop-opacity="0"/>
-                                <stop id="start_inner" offset="95%" stop-opacity="0"/>
-                                <stop id="start_outer" offset="100%" stop-color="#ff7700"/> #}
-
-                                <stop id="end-outer" offset="0%" stop-color="#ff7700"/>
-                                <stop id="end-inner" offset="0%" stop-opacity="0"/>
-                                <stop id="start-inner" offset="0%" stop-opacity="0"/>
-                                <stop id="start-outer" offset="0%" stop-color="#ff7700"/>
-
-                                {# <animate attributeName="x1", values="100%;100%;25%;0%" dur="10s"/>
-                                <animate attributeName="x2", values="100%;75%;0%;0%" dur="10s"/>
-                                <animate attributeName="y2", values="0%;25%;100%;100%" dur="10s"/>
-                                <animate attributeName="y1", values="0%;0%;75%;100%" dur="10s"/> #}
-
-                                {# <animate attributeName="x1", values="100%;100%;50%;0%" dur="10s"/>
-                                <animate attributeName="x2", values="100%;50%;0%;0%" dur="10s"/>
-                                <animate attributeName="y2", values="0%;50%;100%;100%" dur="10s"/>
-                                <animate attributeName="y1", values="0%;0%;50%;100%" dur="10s"/> #}
-
-                                {# <animate attributeName="x1", values="100%;100%;0%" dur="5s"/>
-                                <animate attributeName="x2", values="100%;0%;0%" dur="5s"/>
-                                <animate attributeName="y2", values="0%;100%;100%" dur="5s"/>
-                                <animate attributeName="y1", values="0%;0%;100%" dur="5s"/> #}
-
-                                {# <animate attributeName="x1", values="100%;100%;100%;0%" dur="10s" keyTimes="0;0.48;0.52;1" repeatCount="indefinite"/>
-                                <animate attributeName="x2", values="100%;0%;0%;0%" dur="10s" keyTimes="0;0.48;0.52;1" repeatCount="indefinite"/>
-                                <animate attributeName="y2", values="0%;100%;100%;100%" dur="10s" keyTimes="0;0.48;0.52;1" repeatCount="indefinite"/>
-                                <animate attributeName="y1", values="0%;0%;0%;100%" dur="10s" keyTimes="0;0.48;0.52;1" repeatCount="indefinite"/> #}
-                            </linearGradient>
-                        </defs>
-                        <g id="shape-path-group" transform="translate(300 300)">
-                            {# <path id="shape-path" d="" stroke="#ff7700" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/> #}
-                            {# <path d="" stroke="#b200e3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff"/>
-                            <path d="" stroke="#b200e3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff"/>
-                            <path d="" stroke="#b200e3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff"/>
-                            <path d="" stroke="#b200e3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff"/>
-                            <path d="" stroke="#b200e3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff"/>
-                            <path d="" id="shape-wireframe" stroke="#ff7700" stroke-opacity="1" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/> #}
-
-                            {# <path id="original" d="" stroke="#b200e3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff" shape-rendering="optimizeSpeed"/>
-                            <use href="#original" x="100"/>
-                            <use href="#original" x="-100"/>
-                            <use href="#original" x="-150"/>
-                            <use href="#original" x="150"/> #}
-                            
-                            <path d="" stroke="#b200e3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff" shape-rendering="optimizeSpeed"/>
-                            <path d="" stroke="#b200e3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff" shape-rendering="optimizeSpeed"/>
-                            <path d="" stroke="#b200e3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff" shape-rendering="optimizeSpeed"/>
-                            <path d="" stroke="#b200e3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff" shape-rendering="optimizeSpeed"/>
-                            <path d="" stroke="#b200e3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff" shape-rendering="optimizeSpeed"/>
-                            <path d="" id="shape-wireframe" stroke="url('#shapeGradient')" stroke-opacity="1" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="optimizeSpeed"/>
-
-                        </g>
-                    </svg>
+                    <canvas id="shape-canvas" class="sticky" data-sticky data-anchor="shape-container-cell" data-margin-top="3" width="1000" height="1000" style="width: 100%;">Failed to create canvas</canvas>
                 </div>
             </div>
             <div id="content" class="cell auto" style="height: 100%;">

@@ -3,6 +3,7 @@ import 'expose-loader?exposes=$!jquery';
 require('what-input');
 import 'foundation-sites';
 import '../scss/foundation_styles.scss'
-import './shape.ts';
+// import './shape.ts';
+import './graphics.ts';
 
 $(document).foundation();

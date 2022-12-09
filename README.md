@@ -6,9 +6,7 @@ Run the dev_install.sh script to install the necessary dependencies.
 
 In order to run the build servers run the following commands in separate terminal tabs:
 
-```pub run build_runner watch  --output build```
-
-```sass --watch assets/scss/:assets/css/```
+```npx webpack watch```
 
 Then to run the Flask server itself run the following command in the server directory:
 
