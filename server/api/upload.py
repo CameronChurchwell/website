@@ -75,7 +75,7 @@ def blog_upload():
             import re
 
             slash = r"[/\\]+"
-            prefix = r"!\[([^(\]\()]*)\]\("
+            prefix = r"(?<=[!~])\[([^(\]\()]*)\]\("
             postfix = r"\)"
             no_change = r"(\." + slash + ")*"
 
@@ -140,7 +140,7 @@ def blog_upload():
                     continue
                 comps, name = get_comps_and_name(paths_from_md[i])
                 r = buildPathRegexR(comps, name, max_recursive_depth)
-                md_string = re.sub(r, r"![\1](resource/" + str(i) + r"/)", md_string)
+                md_string = re.sub(r, r"[\1](resource/" + str(i) + r"/)", md_string)
                 
                 #Add file contents to database
                 resource_row = BlogPostResources()

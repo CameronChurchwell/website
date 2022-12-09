@@ -9,6 +9,7 @@ from api.upload import upload_api
 from flask import Flask, render_template, send_from_directory, abort, send_file
 from flask_cors import CORS
 from flaskext.markdown import Markdown
+from audio_md import Audio
 
 from db_setup import get_session
 from models import BlogPost, BlogPostResources
@@ -17,7 +18,7 @@ app = Flask(__name__, static_folder="../assets", template_folder="../templates")
 
 CORS(app, origins="http://localhost:5050", supports_credentials=True)
 
-md = Markdown(app, extensions=['fenced_code', 'codehilite'])
+md = Markdown(app, extensions=[Audio(), 'fenced_code', 'codehilite'])
 
 DART_DIR = "../build/web/dart/"
 JS_DIR = "../buid/js/"
