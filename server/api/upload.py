@@ -19,7 +19,7 @@ upload_api = Blueprint("upload_api", __name__)
 
 db_session = get_session()
 
-@upload_api.route("/protected/blog/upload/", methods=["POST"])
+@upload_api.route("/protected/blog/upload", methods=["POST"])
 @require_auth
 def blog_upload():
     """Upload blog post"""
@@ -75,7 +75,7 @@ def blog_upload():
             import re
 
             slash = r"[/\\]+"
-            prefix = r"(?<=[!~])\[([^(\]\()]*)\]\("
+            prefix = r"(?<=[!~@])\[([^(\]\()]*)\]\("
             postfix = r"\)"
             no_change = r"(\." + slash + ")*"
 
