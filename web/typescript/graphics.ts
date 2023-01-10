@@ -22,10 +22,17 @@ const lineIndices = new Int16Array([
     3, 0,
 ]);
 
+const shapeLineVertices = new Float32Array([
+    0, 0, 0.5, -1, 1, 0.5
+])
+
 const vertexShader = /* wgsl */`
+@group(0) @binding(0) var vertexTexture: texture_2d<f32>;
+
 @vertex
-fn main(@location(0) inPos: vec3<f32>) -> @builtin(position) vec4<f32> {
-  return vec4<f32>(inPos, 1.0);
+fn main(@builtin(vertex_index) idx: u32) -> @builtin(position) vec4<f32> {
+    let x: vec4<f32> = textureLoad(vertexTexture, vec2(0, idx), 0);
+    return x;
 }
 `;
 
@@ -55,6 +62,60 @@ async function init(canvas: HTMLCanvasElement) {
         device,
         format: presentationFormat,
         alphaMode: 'premultiplied',
+    });
+
+    let vertexTextureExtent: GPUExtent3D = {
+        width: 1,
+        height: 2
+    };
+
+    let vertexTexture = device.createTexture({
+        size: vertexTextureExtent,
+        format: 'r32float',
+        usage: GPUTextureUsage.TEXTURE_BINDING | GPUTextureUsage.COPY_DST
+    });
+    let vertexTextureViewDesc: GPUTextureViewDescriptor = {
+        format: 'r32float',
+        dimension: '2d',
+    };
+
+    let vertexTextureView = vertexTexture.createView(vertexTextureViewDesc);
+
+    //Write to texture
+    let shapeLineVerticesLayout: GPUImageDataLayout = {
+        bytesPerRow: 4
+    }
+
+    device.queue.writeTexture(
+        {texture: vertexTexture},
+        // shapeLineVertices,
+        new Float32Array([1, 0]),
+        shapeLineVerticesLayout,
+        vertexTextureExtent
+    );
+
+    let vertexTextureBindingLayout: GPUTextureBindingLayout = {
+        sampleType: 'unfilterable-float'
+    }
+
+    let bindGroupLayout = device.createBindGroupLayout({
+        entries: [
+            {
+                binding: 0,
+                visibility: GPUShaderStage.VERTEX,
+                texture: vertexTextureBindingLayout
+            },
+        ]
+    });
+
+    let bindGroup = device.createBindGroup({
+        layout: bindGroupLayout,
+        entries: [
+            {
+                binding: 0,
+                resource: vertexTextureView
+            },
+        ]
     });
 
     //Create Buffers
@@ -101,9 +162,15 @@ async function init(canvas: HTMLCanvasElement) {
     const vertexShaderModule = device.createShaderModule({code: vertexShader});
     const fragmentShaderModule = device.createShaderModule({code: fragmentShader});
 
+    const pipelineLayoutDesc: GPUPipelineLayoutDescriptor = {
+        bindGroupLayouts: [bindGroupLayout]
+    }
+
+    const pipelineLayout = device.createPipelineLayout(pipelineLayoutDesc);
+
     //Create pipeline
     const pipeline = device.createRenderPipeline({
-        layout: 'auto',
+        layout: pipelineLayout,
         vertex: {module: vertexShaderModule, entryPoint: 'main', buffers: [vertexBufferDesc, nextVertexBufferDesc]},
         fragment: {module: fragmentShaderModule, entryPoint: 'main', targets: [{format: presentationFormat}]},
         primitive: {topology: 'line-list'}
@@ -137,6 +204,7 @@ async function init(canvas: HTMLCanvasElement) {
         passEncoder.setVertexBuffer(0, vertexBuffer);
         passEncoder.setVertexBuffer(1, vertexBuffer, 32/8*3);
         passEncoder.setIndexBuffer(indexBuffer, 'uint16');
+        passEncoder.setBindGroup(0, bindGroup);
         passEncoder.drawIndexed(8);
         passEncoder.end();
 
