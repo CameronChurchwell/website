@@ -4,6 +4,7 @@ require('what-input');
 import 'foundation-sites';
 import '../scss/foundation_styles.scss'
 // import './shape.ts';
-import './graphics.ts';
+// import './graphics-old.ts';
+import './graphics.ts'
 
 $(document).foundation();

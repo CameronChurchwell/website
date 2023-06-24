@@ -44,6 +44,12 @@ module.exports = {
                         }
                     }
                 ]
+            },
+            {
+                test: /\.glsl$/,
+                use: [{
+                    loader: 'raw-loader',
+                }],
             }
         ],
     },
