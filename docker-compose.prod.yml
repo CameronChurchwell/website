@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+
+  db:
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER_FILE: /run/secrets/db_user
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+    ports: !reset
+
+  python:
+    build:
+      context: .
+      dockerfile_inline: |
+        FROM python
+        COPY requirements.txt requirements.txt
+        RUN pip install -r requirements.txt
+        RUN pip install gunicorn
+        RUN mkdir /server
+        RUN mkdir /templates
+        RUN mkdir /assets
+    ports:
+      - 5000:5000
+    secrets:
+      - db_user
+      - db_password
+      - ssl_cert
+      - ssl_key
+    command: "gunicorn --certfile /run/secrets/cert.pem --keyfile /run/secrets/key.pem -b 0.0.0.0:5000 web_app:app"
+
+  node:
+    environment:
+      - NODE_ENV=production
+    command: "npx tsc"
+
+secrets:
+  db_user:
+    file: ./db_user.secret
+  db_password:
+    file: ./db_password.secret
+  ssl_cert:
+    file: ./SSLFiles/cert.pem
+  ssl_key:
+    file: ./SSLFiles/key.pem
