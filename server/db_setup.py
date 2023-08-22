@@ -1,11 +1,27 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from pathlib import Path
 
-#TODO change to load credentials from file
-#TODO change to load username somehow
+secrets_path = Path('/run/secrets')
+db_user_path = secrets_path / 'db_user'
+db_password_path = secrets_path / 'db_password'
 
-db_url = "postgresql://cameron:th3_sh4p3@localhost:5432/website" #You could try to access the database, but there's a firewall in the way
+if not db_user_path.exists():
+    raise FileNotFoundError(f'database user file {db_user_path} does not exist')
+if not db_password_path.exists():
+    raise FileNotFoundError(f'database password file {db_password_path} does not exist')
+
+with open(db_user_path, 'r') as f:
+    db_user = f.read()
+with open(db_password_path, 'r') as f:
+    db_password = f.read()
+
+db_address = 'db'
+db_port = 5432
+db_path = 'website'
+
+db_url = f'postgresql://{db_user}:{db_password}@{db_address}:{db_port}/{db_path}'
 
 #Create Engine
 engine = create_engine(db_url)
