@@ -12,13 +12,17 @@
 
 <div id=content-container>
     <div id=main-content>
+
+        <div class="main-content-callout">
         <h1>My Blog Posts</h1>
 
-        {% filter markdown %}
+            {% filter markdown %}
 
-        {{post_list}}
+            {{post_list}}
 
-        {% endfilter %}
+            {% endfilter %}
+
+        </div>
 
     </div>
 </div>

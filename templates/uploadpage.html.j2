@@ -4,14 +4,15 @@
 
 {% block content %}
 
-<link href="{{url_for('static', filename='css/form_styles.css')}}" rel="stylesheet">
+{# <link href="{{url_for('static', filename='css/form_styles.css')}}" rel="stylesheet"> #}
 <!-- <script defer src="{{ url_for('dart_static', file_name='upload.dart.js') }}"></script> -->
+<script defer src="{{url_for('static', filename='build/main.js') }}"></script>
 
 <div id="form-container">
     <form id="upload-form" action="/api/protected/blog/upload" method="post" enctype="multipart/form-data">
         <label for="zip-file">Choose a .zip file to upload!</label>
         <input type="file" id="zip-file" name="zip-file"><br>
-        <input type="submit" id="submit-button" value="Submit">
+        <input class="button submit" type="submit" id="submit-button" value="Submit">
     </form>
 </div>
 
