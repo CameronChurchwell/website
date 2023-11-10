@@ -2,8 +2,6 @@
 {% set sections = [
     ("Home", "/"),
     ("Blog", "/blog/"),
-    ("Bio", "/bio/"),
-    ("Links", "/links/"),
     ("Login", "/login/")
 ] %}
 <html>
@@ -15,20 +13,6 @@
     </head>
     <body>
 
-        <!-- <nav>
-            {% set sections = [
-                ("Home", "/"),
-                ("Blog", "/blog/"),
-                ("Bio", "/bio/"),
-                ("Links", "/links/"),
-                ("Login", "/login/")
-                ] %}
-            <ul>
-                {% for section, href in sections %}
-                <li {% if active_tab == section %} class="current" {% endif %}><a href="{{ href }}">{{ section }}</a></li>
-                {% endfor %}
-            </ul>
-        </nav> -->
         <div id="top-bar-container" data-sticky-container>
             <div data-sticky data-margin-top="0" data-sticky-on="small">
                 <div class="title-bar" data-responsive-toggle="top-main-menu" data-hide-for="medium" style="height: 3em;">

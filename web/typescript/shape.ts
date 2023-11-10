@@ -769,6 +769,9 @@ function setShapeRotation() {
         // scrollTop = 0;
     // }
     // let scrollPercentage = scrollTop / scrollTotal;
+    if (scrollTop < 0) {
+        return;
+    }
     let scrollPercentage = Math.round(scrollTop/scrollTotal*10000)/10000
     if (scrollPercentage > 1) {
         scrollPercentage = 1

@@ -48,11 +48,11 @@ def root_asset(asset):
 
 root_pages = [
     "home",
-    "bio",
-    "links",
+    # "bio",
+    # "links",
     "login",
     "logout",
-    "test",
+    # "test",
 ]
 
 @app.route("/", methods=["GET"])
@@ -70,7 +70,7 @@ def blogpage():
         title = post.title
         new_part = "## [" + title + "](" + "post/" + str(post.id) + "/)" + "\n"
         list_string += new_part
-    return render_template("blogmainpage.html", post_list=list_string)
+    return render_template("blogmainpage.html.j2", post_list=list_string)
 
 @app.route("/dart/<path:file_name>", methods=["GET"])
 def dart_static(file_name):
@@ -95,7 +95,7 @@ def markdown_test():
 @app.route("/blog/upload/", methods=["GET"])
 def upload_test():
     print("hit upload_test")
-    return render_template("uploadpage.html")
+    return render_template("uploadpage.html.j2")
 
 @app.route("/blog/post/<int:pid>/", methods=["GET"])
 def serve_post(pid):
@@ -105,7 +105,7 @@ def serve_post(pid):
     else:
         md_string = "\n" + post_row.markdown
         #print(render_template("blogpost.html", md_string=md_string))
-        return render_template("blogpost.html", md_string=md_string)
+        return render_template("blogpost.html.j2", md_string=md_string)
 
 @app.route("/blog/post/<int:pid>/resource/<int:rid>/", methods=["GET"])
 def server_post_resource(pid, rid):
