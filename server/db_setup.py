@@ -13,9 +13,9 @@ if not db_password_path.exists():
     raise FileNotFoundError(f'database password file {db_password_path} does not exist')
 
 with open(db_user_path, 'r') as f:
-    db_user = f.read()
+    db_user = f.read().rstrip()
 with open(db_password_path, 'r') as f:
-    db_password = f.read()
+    db_password = f.read().rstrip()
 
 db_address = 'db'
 db_port = 5432

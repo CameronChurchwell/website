@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
 
   db:
@@ -8,7 +6,7 @@ services:
     environment:
       POSTGRES_USER_FILE: /run/secrets/db_user
       POSTGRES_PASSWORD_FILE: /run/secrets/db_password
-    ports: !reset
+    ports: !reset []
 
   python:
     build:
@@ -28,7 +26,7 @@ services:
       - db_password
       - ssl_cert
       - ssl_key
-    command: "gunicorn --certfile /run/secrets/cert.pem --keyfile /run/secrets/key.pem -b 0.0.0.0:5000 web_app:app"
+    command: "gunicorn --certfile /run/secrets/ssl_cert --keyfile /run/secrets/ssl_key -b 0.0.0.0:5000 web_app:app"
 
   node:
     environment:
