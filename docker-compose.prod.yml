@@ -31,7 +31,7 @@ services:
   node:
     environment:
       - NODE_ENV=production
-    command: "npx tsc"
+    command: "npx webpack build"
 
 secrets:
   db_user:
