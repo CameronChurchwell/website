@@ -4,7 +4,7 @@
 
 {% block content %}
 
-{% set content_height = 4000 %}
+{% set content_height = 3000 %}
 
 <script defer src="{{url_for('static', filename='build/main.js') }}"></script>
 <script defer src="{{url_for('static', filename='build/shape.js') }}"></script>
@@ -16,39 +16,11 @@
                 <div id="shape-container" data-sticky-container data-dynamic-height="false">
                     <svg id="shape-sticky" class="sticky" data-sticky data-anchor="shape-container-cell" data-margin-top="3" viewbox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <linearGradient id="shapeGradient" x1="100%" y1="0%" x2="0%" y2="100%" spreadMethod="pad">
-                            {# <linearGradient id="shapeGradient" x1="100%" y1="0" x2="100%" y2="0%" spreadMethod="pad"> #}
-                                {# <stop offset="5%" stop-color="#ffffff"/> #}
-                                {# <stop offset="95%" stop-color="#ff7700" /> #}
-                                {# <stop id="end_outer" offset="0%" stop-color="#ff7700"/>
-                                <stop id="end_inner" idoffset="5%" stop-opacity="0"/>
-                                <stop id="start_inner" offset="95%" stop-opacity="0"/>
-                                <stop id="start_outer" offset="100%" stop-color="#ff7700"/> #}
-
+                            <linearGradient id="shapeGradient" x1="0%" y1="0%" x2="100%" y2="100%" spreadMethod="pad">
                                 <stop id="end-outer" offset="0%" stop-color="#ff7700"/>
                                 <stop id="end-inner" offset="0%" stop-opacity="0"/>
                                 <stop id="start-inner" offset="0%" stop-opacity="0"/>
                                 <stop id="start-outer" offset="0%" stop-color="#ff7700"/>
-
-                                {# <animate attributeName="x1", values="100%;100%;25%;0%" dur="10s"/>
-                                <animate attributeName="x2", values="100%;75%;0%;0%" dur="10s"/>
-                                <animate attributeName="y2", values="0%;25%;100%;100%" dur="10s"/>
-                                <animate attributeName="y1", values="0%;0%;75%;100%" dur="10s"/> #}
-
-                                {# <animate attributeName="x1", values="100%;100%;50%;0%" dur="10s"/>
-                                <animate attributeName="x2", values="100%;50%;0%;0%" dur="10s"/>
-                                <animate attributeName="y2", values="0%;50%;100%;100%" dur="10s"/>
-                                <animate attributeName="y1", values="0%;0%;50%;100%" dur="10s"/> #}
-
-                                {# <animate attributeName="x1", values="100%;100%;0%" dur="5s"/>
-                                <animate attributeName="x2", values="100%;0%;0%" dur="5s"/>
-                                <animate attributeName="y2", values="0%;100%;100%" dur="5s"/>
-                                <animate attributeName="y1", values="0%;0%;100%" dur="5s"/> #}
-
-                                {# <animate attributeName="x1", values="100%;100%;100%;0%" dur="10s" keyTimes="0;0.48;0.52;1" repeatCount="indefinite"/>
-                                <animate attributeName="x2", values="100%;0%;0%;0%" dur="10s" keyTimes="0;0.48;0.52;1" repeatCount="indefinite"/>
-                                <animate attributeName="y2", values="0%;100%;100%;100%" dur="10s" keyTimes="0;0.48;0.52;1" repeatCount="indefinite"/>
-                                <animate attributeName="y1", values="0%;0%;0%;100%" dur="10s" keyTimes="0;0.48;0.52;1" repeatCount="indefinite"/> #}
                             </linearGradient>
                         </defs>
                         <g id="shape-path-group" transform="translate(300 300)">
@@ -82,52 +54,101 @@
                     <div class="main-content-cell">
                         <div class="main-content-callout">
                             <h2>About Me</h2>
-                                <p>
-                                {% filter markdown %}
+                            <p>
+                            {% filter markdown %}
 Hi, my name is Cameron Churchwell, I'm a fourth year student in the McCormick School of Engineering at Northwestern
 University studying computer science and math. I've been programming since fifth grade when I discovered the
 [ComputerCraft](https://github.com/dan200/ComputerCraft) mod for Minecraft.
+
 Now I'm doing research in the field of neural speech editing with a current focus on pronunciation and prosody.
-In my free time I work on ridiculous and \(sometimes\) useful side projects, play trombone in the Northwestern University Marching Band,
+
+In my free time I work on ridiculous and \(sometimes\) useful side projects, play trombone in assorted Northwestern University Bands,
 play videogames, read, and learn to rollerblade.
-                                {% endfilter %}
-                                </p>
+
+Oh and if you're on desktop, you can see the cool optical illusion I made!
+                            {% endfilter %}
+                            </p>
                         </div>
                     </div>
                     <div class="main-content-cell">
                         <div class="main-content-callout">
                             <h2>Research</h2>
-                            <p>Placeholder</p>
+                            <p>
+                            {% filter markdown %}
+I work in the [Interactive Audio Lab](https://interactiveaudiolab.github.io) lead by Professor [Bryan Pardo](https://bryan-pardo.github.io). 
+
+My current work with PhD candidate [Max Morrison](https://www.maxrmorrison.com) focuses
+on neural speech editing, specifically on creating better representations for pronunciation information and exploring controllable speech synthesis.
+
+My main interests right now are controllable speech representations, speech editing, and using these technologies to assist people with speech sound disorders.
+I am also interested in music generation, and source separation.
+                            {% endfilter %}
+                            </p>
                         </div>
                     </div>
                     <div class="main-content-cell">
                         <div class="main-content-callout">
-                            <h2>Academic Achievements</h2>
-                            <p>there is hopefully some content here</p>
+                            <h2>Publications</h2>
+                            <p>
+                            {% filter markdown %}
+\* indicates equal contributions
+
+- C. Churchwell\*, M. Morrison\*, and B. Pardo, "High-Fidelity Neural Phonetic Posteriorgrams," Submitted to ICASSP 2024, April 2024.
+                            {% endfilter %}
+                            </p>
                         </div>
                     </div>
                     <div class="main-content-cell">
                         <div class="main-content-callout">
-                            <h2>Work Experiences</h2>
-                            <p>there is hopefully some content here</p>
+                            <h2>Work/Teaching Experiences</h2>
+                            <p>
+                            {% filter markdown %}
+- Teaching
+    - Teaching Assistant, CS449 Deep Learning (Winter 2023)
+    - Teaching Assistant, CS449 Deep Learning (Spring 2023)
+    - Teaching Assistant, CS449 Deep Learning (Fall 2023)
+- Music
+    - Stipend Band (2022-2023)
+                            {% endfilter %}
+                            </p>
                         </div>
                     </div>
                     <div class="main-content-cell">
                         <div class="main-content-callout">
                             <h2>Extracurricular Activities</h2>
-                            <p>there is hopefully some content here</p>
+                            <p>
+                            {% filter markdown %}
+- Music
+    - Northwestern University Concert Band (x6 quarters)
+    - Northwestern University Marching Band (NUMB) (2022-present)
+    - Northwestern University Stipend Band (2022-2023)
+    - Northwestern Univserity Basketball Band (2022-present)
+    - SAI Jazz Band (x1 quarter)
+- Technical
+    - Slivka Residential College Of Science and Engineering Website Chair (2021-2023)
+                            {% endfilter %}
+                            </p>
                         </div>
                     </div>
                     <div class="main-content-cell">
                         <div class="main-content-callout">
-                            <h2>Statement of Purpose</h2>
-                            <p>there is hopefully some content here</p>
+                            <h2>Honors</h2>
+                            <p>
+                            {% filter markdown %}
+- 2023 Northwestern University Computer Science Summer Undergraduate Research Fellowship ($6,500)
+                            {% endfilter %}
+                            </p>
                         </div>
                     </div>
                     <div class="main-content-cell">
                         <div class="main-content-callout">
                             <h2>Contact Info</h2>
-                            <p>there is hopefully some content here</p>
+                            {% filter markdown %}
+- [CameronChurchwell2024@u.northwestern.edu](mailto:cameronchurchwell2024@u.northwestern.edu)
+- [CV](https://www.cameronchurchwell.com/cv_download)
+- [LinkedIn](https://www.linkedin.com/in/cameron-churchwell-5b25201b5/)
+- [GitHub](https://github.com/CameronChurchwell)
+                            {% endfilter %}
                         </div>
                     </div>
                 </div>
