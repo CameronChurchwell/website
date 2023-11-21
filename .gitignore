@@ -11,3 +11,5 @@ server/secret.txt
 __pycache__/
 *.secret
 package-lock.json
+
+SSLFiles/*.pem
