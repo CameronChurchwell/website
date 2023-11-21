@@ -1,0 +1,161 @@
+{% extends "base_template.html.j2" %}
+
+{% set active_tab = "Test" %}
+
+{% block content %}
+
+{% set content_height = 3000 %}
+
+<script defer src="{{url_for('static', filename='build/main.js') }}"></script>
+<script defer src="{{url_for('static', filename='build/shape.js') }}"></script>
+
+<div id="main-content">
+    <div id="content-container" style="height: {{ content_height }}px; margin-bottom: 2000px;">
+        <div class="grid-x grid-padding-x" style="height: 100%;">
+            <div id="shape-container-cell">
+                <div id="shape-container" data-sticky-container data-dynamic-height="false">
+                    <svg id="shape-sticky" class="sticky" data-sticky data-anchor="shape-container-cell" data-margin-top="3" viewbox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="shapeGradient" x1="0%" y1="0%" x2="100%" y2="100%" spreadMethod="pad">
+                                <stop id="end-outer" offset="0%" stop-color="#ff7700"/>
+                                <stop id="end-inner" offset="0%" stop-opacity="0"/>
+                                <stop id="start-inner" offset="0%" stop-opacity="0"/>
+                                <stop id="start-outer" offset="0%" stop-color="#ff7700"/>
+                            </linearGradient>
+                        </defs>
+                        <g id="shape-path-group" transform="translate(300 300)">
+                            {# <path id="shape-path" d="" stroke="#ff7700" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/> #}
+                            {# <path d="" stroke="#b200e3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff"/>
+                            <path d="" stroke="#b200e3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff"/>
+                            <path d="" stroke="#b200e3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff"/>
+                            <path d="" stroke="#b200e3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff"/>
+                            <path d="" stroke="#b200e3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff"/>
+                            <path d="" id="shape-wireframe" stroke="#ff7700" stroke-opacity="1" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/> #}
+
+                            {# <path id="original" d="" stroke="#b200e3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff" shape-rendering="optimizeSpeed"/>
+                            <use href="#original" x="100"/>
+                            <use href="#original" x="-100"/>
+                            <use href="#original" x="-150"/>
+                            <use href="#original" x="150"/> #}
+                            
+                            <path d="" stroke="#b200e3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff" shape-rendering="optimizeSpeed"/>
+                            <path d="" stroke="#b200e3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff" shape-rendering="optimizeSpeed"/>
+                            <path d="" stroke="#b200e3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff" shape-rendering="optimizeSpeed"/>
+                            <path d="" stroke="#b200e3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff" shape-rendering="optimizeSpeed"/>
+                            <path d="" stroke="#b200e3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff" shape-rendering="optimizeSpeed"/>
+                            <path d="" id="shape-wireframe" stroke="url('#shapeGradient')" stroke-opacity="1" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="optimizeSpeed"/>
+
+                        </g>
+                    </svg>
+                </div>
+            </div>
+            <div id="content" class="cell auto" style="height: 100%;">
+                <div id="content-grid-y" class="grid-y grid-padding-y" style="height: 100%;">
+                    <div class="main-content-cell">
+                        <div class="main-content-callout">
+                            <h2>About Me</h2>
+                            <p>
+                            {% filter markdown %}
+Hi, my name is Cameron Churchwell, I'm a fourth year student in the McCormick School of Engineering at Northwestern
+University studying computer science and math. I've been programming since fifth grade when I discovered the
+[ComputerCraft](https://github.com/dan200/ComputerCraft) mod for Minecraft.
+
+Now I'm doing research in the field of neural speech editing with a current focus on pronunciation and prosody.
+
+In my free time I work on ridiculous and \(sometimes\) useful side projects, play trombone in assorted Northwestern University Bands,
+play videogames, read, and learn to rollerblade.
+
+Oh and if you're on desktop, you can see the cool optical illusion I made!
+                            {% endfilter %}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="main-content-cell">
+                        <div class="main-content-callout">
+                            <h2>Research</h2>
+                            <p>
+                            {% filter markdown %}
+I work in the [Interactive Audio Lab](https://interactiveaudiolab.github.io) lead by Professor [Bryan Pardo](https://bryan-pardo.github.io). 
+
+My current work with PhD candidate [Max Morrison](https://www.maxrmorrison.com) focuses
+on neural speech editing, specifically on creating better representations for pronunciation information and exploring controllable speech synthesis.
+
+My main interests right now are controllable speech representations, speech editing, and using these technologies to assist people with speech sound disorders.
+I am also interested in music generation, and source separation.
+                            {% endfilter %}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="main-content-cell">
+                        <div class="main-content-callout">
+                            <h2>Publications</h2>
+                            <p>
+                            {% filter markdown %}
+\* indicates equal contributions
+
+- C. Churchwell\*, M. Morrison\*, and B. Pardo, "High-Fidelity Neural Phonetic Posteriorgrams," Submitted to ICASSP 2024, April 2024.
+                            {% endfilter %}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="main-content-cell">
+                        <div class="main-content-callout">
+                            <h2>Work/Teaching Experiences</h2>
+                            <p>
+                            {% filter markdown %}
+- Teaching
+    - Teaching Assistant, CS449 Deep Learning (Winter 2023)
+    - Teaching Assistant, CS449 Deep Learning (Spring 2023)
+    - Teaching Assistant, CS449 Deep Learning (Fall 2023)
+- Music
+    - Stipend Band (2022-2023)
+                            {% endfilter %}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="main-content-cell">
+                        <div class="main-content-callout">
+                            <h2>Extracurricular Activities</h2>
+                            <p>
+                            {% filter markdown %}
+- Music
+    - Northwestern University Concert Band (x6 quarters)
+    - Northwestern University Marching Band (NUMB) (2022-present)
+    - Northwestern University Stipend Band (2022-2023)
+    - Northwestern Univserity Basketball Band (2022-present)
+    - SAI Jazz Band (x1 quarter)
+- Technical
+    - Slivka Residential College Of Science and Engineering Website Chair (2021-2023)
+                            {% endfilter %}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="main-content-cell">
+                        <div class="main-content-callout">
+                            <h2>Honors</h2>
+                            <p>
+                            {% filter markdown %}
+- 2023 Northwestern University Computer Science Summer Undergraduate Research Fellowship ($6,500)
+                            {% endfilter %}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="main-content-cell">
+                        <div class="main-content-callout">
+                            <h2>Contact Info</h2>
+                            {% filter markdown %}
+- [CameronChurchwell2024@u.northwestern.edu](mailto:cameronchurchwell2024@u.northwestern.edu)
+- [CV](https://www.cameronchurchwell.com/cv_download)
+- [LinkedIn](https://www.linkedin.com/in/cameron-churchwell-5b25201b5/)
+- [GitHub](https://github.com/CameronChurchwell)
+                            {% endfilter %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

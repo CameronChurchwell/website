@@ -1,19 +1,13 @@
-# Files and directories created by pub
-.dart_tool/
-.packages
-
 # Conventional directory for build outputs
 build/
 
-# Directory created by dartdoc
-doc/api/
-
 #Other things to ignore
-env/
 .DS_Store
 .vscode/
-assets/css/
-assets/js/
-/server/secret.txt
+web/assets/css/
+web/assets/js/
+web/node_modules/
+server/secret.txt
 __pycache__/
-node_modules/
+*.secret
+package-lock.json

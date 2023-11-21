@@ -1,0 +1,66 @@
+version: "3.9"
+
+services:
+
+  db:
+    image: postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_USER_FILE: /run/secrets/db_user
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+    ports:
+      - 5433:5432
+    secrets:
+      - db_user
+      - db_password
+
+  python:
+    build:
+      context: .
+      dockerfile_inline: |
+        FROM python
+        COPY requirements.txt requirements.txt
+        RUN pip install -r requirements.txt
+        RUN mkdir /server
+        RUN mkdir /templates
+        RUN mkdir /assets
+    volumes:
+      - ./server:/server
+      - ./templates:/templates
+      - ./web/assets:/assets
+    environment:
+      - FLASK_APP=/server/web_app.py
+      - FLASK_DEBUG=1
+      - FLASK_ENV=development
+    ports:
+      - 5050:5050
+    working_dir: /server
+    secrets:
+      - db_user
+      - db_password
+    command: "python -m flask run --host 0.0.0.0 -p 5050"
+
+  node:
+    build:
+      context: .
+      dockerfile_inline: |
+        FROM node:latest
+        USER node
+        RUN mkdir /home/node/build
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./web:/home/node/app
+    command: "npx webpack watch"
+
+volumes:
+  db_data: {}
+
+secrets:
+  db_user:
+    file: ./db_user.secret
+  db_password:
+    file: ./db_password.secret

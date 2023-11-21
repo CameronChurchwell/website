@@ -1,13 +1,16 @@
-{% extends "base_template.html" %}
+{% extends "base_template.html.j2" %}
 
 {% set active_tab = "Bio" %}
 
 {% block content %}
 
-<link href="{{url_for('static', filename='css/blog_post_styles.css')}}" rel="stylesheet">
+{# <link href="{{url_for('static', filename='css/blog_post_styles.css')}}" rel="stylesheet"> #}
 
-<div id="content-container">
-    <div id="main-content">
+<script defer src="{{url_for('static', filename='build/main.js') }}"></script>
+
+<div id="main-content">
+    <div id="content-container">
+        <div id="content" class="main-content-callout" style="height:100%">
 {% filter markdown %}
 
 # Who is Cameron Churchwell?
@@ -21,6 +24,7 @@ You can find many of my projects summarized in blog posts on this site, though b
 Outside of programming, I generally spend my time learning new things, playing games with my friends, spending time with my family, practicing trombone, and reading.
 
 {% endfilter %}
+        </div>
     </div>
 </div>
 

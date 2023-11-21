@@ -1,0 +1,25 @@
+{% extends "blogmainpage.html.j2" %}
+
+{% set active_tab = "Blog" %}
+
+{% block content %}
+
+<script defer src="{{url_for('static', filename='build/main.js') }}"></script>
+
+<div id="content-container">
+
+    <div class="main-content-cell">
+        <div id="main-content" class="main-content-callout">
+
+            {% filter markdown %}
+
+            {{md_string|safe}}
+
+            {% endfilter %}
+        
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
