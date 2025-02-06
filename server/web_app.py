@@ -66,7 +66,7 @@ def blogpage():
     """Serve root blog page"""
     post_query = db_session.query(BlogPost)
     list_string = "\n"
-    for post in post_query:
+    for post in reversed(list(post_query)):
         title = post.title
         new_part = "## [" + title + "](" + "post/" + str(post.id) + "/)" + "\n"
         list_string += new_part

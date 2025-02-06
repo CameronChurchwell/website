@@ -4,7 +4,7 @@
 
 {% block content %}
 
-{% set content_height = 3000 %}
+{% set content_height = 5000 %}
 
 <script defer src="{{url_for('static', filename='build/main.js') }}"></script>
 <script defer src="{{url_for('static', filename='build/shape.js') }}"></script>
@@ -53,70 +53,63 @@
                 <div id="content-grid-y" class="grid-y grid-padding-y" style="height: 100%;">
                     <div class="main-content-cell">
                         <div class="main-content-callout">
-                            <h2>About Me</h2>
-                            <p>
+                            <h2><b>About Me</b></h2>
                             {% filter markdown %}
-Hi, my name is Cameron Churchwell, I'm a fourth year student in the McCormick School of Engineering at Northwestern
-University studying computer science and math. I've been programming since fifth grade when I discovered the
+Hi, my name is Cameron Churchwell, I'm a first year PhD student at the University of Illinois at Urbana Champaign. I've been programming since fifth grade when I discovered the
 [ComputerCraft](https://github.com/dan200/ComputerCraft) mod for Minecraft.
 
-Now I'm doing research in the field of neural speech editing with a current focus on pronunciation and prosody.
+Now I'm doing research in machine learning for audio applications, with a current focus on learned DSP filters and audio segmentation.
 
-In my free time I work on ridiculous and \(sometimes\) useful side projects, play trombone in assorted Northwestern University Bands,
-play videogames, read, and learn to rollerblade.
+In my free time I work on ridiculous and \(sometimes\) useful side projects, play trombone (currently looking for groups), read,
+and play games with my friends.
 
-Oh and if you're on desktop, you can see the cool optical illusion I made!
+Oh, and if you're on desktop, you can see the cool optical illusion I made on the left side of the screen as you scroll!
                             {% endfilter %}
-                            </p>
                         </div>
                     </div>
                     <div class="main-content-cell">
                         <div class="main-content-callout">
-                            <h2>Research</h2>
-                            <p>
+                            <h2><b>Research</b></h2>
                             {% filter markdown %}
-I work in the [Interactive Audio Lab](https://interactiveaudiolab.github.io) lead by Professor [Bryan Pardo](https://bryan-pardo.github.io). 
-
-My current work with PhD candidate [Max Morrison](https://www.maxrmorrison.com) focuses
+My prior work with [Max Morrison](https://www.maxrmorrison.com) and [Bryan Pardo](https://bryan-pardo.github.io) focused
 on neural speech editing, specifically on creating better representations for pronunciation information and exploring controllable speech synthesis.
 
-My main interests right now are controllable speech representations, speech editing, and using these technologies to assist people with speech sound disorders.
-I am also interested in music generation, and source separation.
+I now work in the Audio Lab at UIUC with Professors Paris Smaragdis and Minje Kim.
+
+My main interests right now are in learnable DSP filters, audio segmentation, and controllable speech editing.
+
+I also want to develop tools to help people with speech sound disorders.
                             {% endfilter %}
-                            </p>
                         </div>
                     </div>
                     <div class="main-content-cell">
                         <div class="main-content-callout">
-                            <h2>Publications</h2>
-                            <p>
+                            <h2><b>Publications</b></h2>
                             {% filter markdown %}
 \* indicates equal contributions
 
-- C. Churchwell\*, M. Morrison\*, and B. Pardo, "High-Fidelity Neural Phonetic Posteriorgrams," Submitted to ICASSP 2024, April 2024.
+- C. Churchwell\*, M. Morrison\*, and B. Pardo, "High-Fidelity Neural Phonetic Posteriorgrams," ICASSP 2024 Workshop on Explainable Machine Learning for Speech and Audio, April 2024.
+- M. Morrison, C. Churchwell, N. Pruyne, and B. Pardo, "Fine-Grained and Interpretable Neural Speech Editing," Interspeech, September 2024.
                             {% endfilter %}
-                            </p>
                         </div>
                     </div>
                     <div class="main-content-cell">
                         <div class="main-content-callout">
-                            <h2>Work/Teaching Experiences</h2>
-                            <p>
+                            <h2><b>Work/Teaching Experiences</b></h2>
                             {% filter markdown %}
 - Teaching
     - Teaching Assistant, CS449 Deep Learning (Winter 2023)
     - Teaching Assistant, CS449 Deep Learning (Spring 2023)
     - Teaching Assistant, CS449 Deep Learning (Fall 2023)
+    - Teaching Assistant, CS449 Deep Learning (Spring 2024)
 - Music
     - Stipend Band (2022-2023)
                             {% endfilter %}
-                            </p>
                         </div>
                     </div>
                     <div class="main-content-cell">
                         <div class="main-content-callout">
-                            <h2>Extracurricular Activities</h2>
-                            <p>
+                            <h2><b>Extracurricular Activities</b></h2>
                             {% filter markdown %}
 - Music
     - Northwestern University Concert Band (x6 quarters)
@@ -127,25 +120,24 @@ I am also interested in music generation, and source separation.
 - Technical
     - Slivka Residential College Of Science and Engineering Website Chair (2021-2023)
                             {% endfilter %}
-                            </p>
                         </div>
                     </div>
                     <div class="main-content-cell">
                         <div class="main-content-callout">
-                            <h2>Honors</h2>
-                            <p>
+                            <h2><b>Honors</b></h2>
                             {% filter markdown %}
 - 2023 Northwestern University Computer Science Summer Undergraduate Research Fellowship ($6,500)
+- 2023 Outstanding Peer Mentor for Deep Learning course ($300)
+- 2024 Graduated Magna Cum Laude from Northwestern University
                             {% endfilter %}
-                            </p>
                         </div>
                     </div>
                     <div class="main-content-cell">
                         <div class="main-content-callout">
-                            <h2>Contact Info</h2>
+                            <h2><b>Contact Info</b></h2>
                             {% filter markdown %}
-- [CameronChurchwell2024@u.northwestern.edu](mailto:cameronchurchwell2024@u.northwestern.edu)
-- [CV](https://www.cameronchurchwell.com/cv_download)
+- [cc178@illinois.edu](mailto:cc178@illinois.edu)
+- [CV](https://www.cameronchurchwell.com/assets/cv.pdf)
 - [LinkedIn](https://www.linkedin.com/in/cameron-churchwell-5b25201b5/)
 - [GitHub](https://github.com/CameronChurchwell)
                             {% endfilter %}

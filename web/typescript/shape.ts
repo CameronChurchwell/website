@@ -897,8 +897,10 @@ function setScrollHeight() {
 var gravityTimeout: ReturnType<typeof setTimeout>;
 documentj.on('scroll', function(event) {
     setShapeRotation();
-    if (!autoScrolling) {
+    if (!autoScrolling && $('#shape-container-cell').css('display') !== 'none') {
         clearTimeout(gravityTimeout);
         gravityTimeout = setTimeout(gravitate, 1000);
+    } else if ($('#shape-container-cell').css('display') !== 'none') {
+        clearTimeout(gravityTimeout);
     }
 });

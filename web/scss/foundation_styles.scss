@@ -98,9 +98,16 @@
 
 .main-content-callout {
     @include callout-style(map-get($map: $foundation-palette, $key: "primary"));
-    padding: 1em;
+    padding: 0.5em;
     height: 100%;
     border-radius: 1em;
+    p {
+        margin-bottom: 0.5em !important;
+    }
+    h2 {
+        margin-bottom: 0px !important;
+    }
+    overflow: auto;
 }
 
 $shape-container-medium-width: 3;
