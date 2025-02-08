@@ -6,7 +6,7 @@ from api.login import login_api
 from api.tokens import token_api
 from api.upload import upload_api
 
-from flask import Flask, render_template, send_from_directory, abort, send_file
+from flask import Flask, render_template, send_from_directory, abort, send_file, request, redirect
 from flask_cors import CORS
 from flaskext.markdown import Markdown
 from audio_md import Audio
@@ -88,9 +88,10 @@ def js_static(file_name):
     """Serve Javascript files"""
     return send_from_directory(JS_DIR, file_name)
 
-@app.route("/presentations/<path:presentation_name>/", methods=["GET"])
+@app.route("/presentations/<path:presentation_name>", methods=["GET"])
 def presentation(presentation_name):
-    print('hit!', '../presentations/' + presentation_name)
+    if not request.path.endswith('/'):
+        return redirect(request.path + '/')
     return send_from_directory('../presentations/' + presentation_name, 'main.html')
 
 @app.route("/presentations/<path:presentation_name>/assets/<path:asset_name>", methods=["GET"])
