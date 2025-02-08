@@ -88,7 +88,7 @@ def js_static(file_name):
     """Serve Javascript files"""
     return send_from_directory(JS_DIR, file_name)
 
-@app.route("/presentations/<path:presentation_name>", methods=["GET"])
+@app.route("/presentations/<path:presentation_name>/", methods=["GET"])
 def presentation(presentation_name):
     print('hit!', '../presentations/' + presentation_name)
     return send_from_directory('../presentations/' + presentation_name, 'main.html')
