@@ -12,13 +12,14 @@ services:
     build:
       context: .
       dockerfile_inline: |
-        FROM python
+        FROM python:3.12
         COPY requirements.txt requirements.txt
         RUN pip install -r requirements.txt
         RUN pip install gunicorn
         RUN mkdir /server
         RUN mkdir /templates
         RUN mkdir /assets
+        RUN mkdir /presentations
     ports:
       - 5000:5000
     secrets:
@@ -31,7 +32,7 @@ services:
   node:
     environment:
       - NODE_ENV=production
-    command: "npx webpack build"
+    command: sh -c "npm install; npx webpack build"
 
 secrets:
   db_user:
