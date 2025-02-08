@@ -23,6 +23,7 @@ md = Markdown(app, extensions=[Video(), Audio(), 'fenced_code', 'codehilite'])
 
 DART_DIR = "../build/web/dart/"
 JS_DIR = "../buid/js/"
+PRESENTATIONS_DIR = "../presentations/"
 #dart_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../build/web/dart')
 
 ###---Database-Setup---###
@@ -87,6 +88,14 @@ def js_static(file_name):
     """Serve Javascript files"""
     return send_from_directory(JS_DIR, file_name)
 
+@app.route("/presentations/<path:presentation_name>", methods=["GET"])
+def presentation(presentation_name):
+    print('hit!', '../presentations/' + presentation_name)
+    return send_from_directory('../presentations/' + presentation_name, 'main.html')
+
+@app.route("/presentations/<path:presentation_name>/assets/<path:asset_name>", methods=["GET"])
+def presentation_asset(presentation_name, asset_name):
+    return send_from_directory('../presentations/' + presentation_name + '/assets/', asset_name)
 
 @app.route("/test/markdown/", methods=["GET"])
 def markdown_test():

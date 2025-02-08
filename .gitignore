@@ -15,3 +15,6 @@ package-lock.json
 SSLFiles/*.pem
 
 web/assets/cv.pdf
+
+presentations/*
+!presentations/.gitkeep

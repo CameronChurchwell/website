@@ -25,10 +25,12 @@ services:
         RUN mkdir /server
         RUN mkdir /templates
         RUN mkdir /assets
+        RUN mkdir /presentations
     volumes:
       - ./server:/server
       - ./templates:/templates
       - ./web/assets:/assets
+      - ./presentations:/presentations
     environment:
       - FLASK_APP=/server/web_app.py
       - FLASK_DEBUG=1
