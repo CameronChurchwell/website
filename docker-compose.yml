@@ -2,7 +2,7 @@
 services:
 
   db:
-    image: postgres:15.10
+    image: postgres:16.6
     volumes:
       - db_data:/var/lib/postgresql/data
     restart: always
