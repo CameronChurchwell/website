@@ -1,9 +1,8 @@
-version: "3.9"
 
 services:
 
   db:
-    image: postgres
+    image: postgres:15.10
     volumes:
       - db_data:/var/lib/postgresql/data
     restart: always
@@ -20,7 +19,7 @@ services:
     build:
       context: .
       dockerfile_inline: |
-        FROM python
+        FROM python:3.12
         COPY requirements.txt requirements.txt
         RUN pip install -r requirements.txt
         RUN mkdir /server
@@ -54,7 +53,7 @@ services:
       - NODE_ENV=development
     volumes:
       - ./web:/home/node/app
-    command: "npx webpack watch"
+    command: sh -c "npm install; npx webpack watch"
 
 volumes:
   db_data: {}
