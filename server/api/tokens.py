@@ -63,7 +63,7 @@ def make_refresh_token(email):
 
     new_refresh_token_row = UsersRefreshTokensModel()
     new_refresh_token_row.email = email
-    new_refresh_token_row.refresh_token = str(token, "utf-8")
+    new_refresh_token_row.refresh_token = token
     db_session.add(new_refresh_token_row)
     db_session.commit()
 
