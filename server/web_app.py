@@ -8,9 +8,11 @@ from api.upload import upload_api
 
 from flask import Flask, render_template, send_from_directory, abort, send_file, request, redirect
 from flask_cors import CORS
-from flaskext.markdown import Markdown
+# from flaskext.markdown import Markdown
 from audio_md import Audio
 from video_md import Video
+
+import markdown
 
 from db_setup import get_session
 from models import BlogPost, BlogPostResources
@@ -19,7 +21,10 @@ app = Flask(__name__, static_folder="../assets", template_folder="../templates")
 
 CORS(app, origins="http://localhost:5050", supports_credentials=True)
 
-md = Markdown(app, extensions=[Video(), Audio(), 'fenced_code', 'codehilite'])
+@app.template_filter('markdown')
+def render_markdown(text):
+    return markdown.markdown(text, extensions=[Video(), Audio(), 'fenced_code', 'codehilite'])
+# md = Markdown(app, extensions=[Video(), Audio(), 'fenced_code', 'codehilite'])
 
 DART_DIR = "../build/web/dart/"
 JS_DIR = "../buid/js/"
@@ -127,7 +132,7 @@ def server_post_resource(pid, rid):
         data_file_object = BytesIO(data)
         return send_file(
             data_file_object,
-            attachment_filename="resource." + content_row.ext
+            download_name="resource." + content_row.ext
         )
 
 

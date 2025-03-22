@@ -27,7 +27,6 @@ class AudioProcessor(BlockProcessor):
         parent.append(el)
 
 class Audio(Extension):
-    
     def extendMarkdown(self, md):
         md.registerExtension(self)
         md.parser.blockprocessors.register(AudioProcessor(md.parser), 'Audio', 10000)

@@ -27,7 +27,6 @@ class VideoProcessor(BlockProcessor):
         parent.append(el)
 
 class Video(Extension):
-    
     def extendMarkdown(self, md):
         md.registerExtension(self)
         md.parser.blockprocessors.register(VideoProcessor(md.parser), 'Video', 10001)
