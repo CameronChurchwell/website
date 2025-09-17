@@ -861,10 +861,23 @@ $(function() {
     setShapeRotation();
 });
 
+// some of this is likely redundant...
 $(window).on('resize', function(event) {
+    let timer;
+    clearTimeout(timer);
+    timer = setTimeout(
+        () => {
+        setScrollHeight();
+        scrollTotal = Math.floor($('#content').height()! * 6/7);
+        setShapeRotation();
+        setScrollHeight();
+        },
+        100
+    );
     setScrollHeight();
     scrollTotal = Math.floor($('#content').height()! * 6/7);
     setShapeRotation();
+    setScrollHeight();
 });
 
 var autoScrolling = false;
