@@ -21,18 +21,32 @@ services:
         RUN mkdir /assets
         RUN mkdir /presentations
     ports:
-      - 5000:5000
+      - 5050:5050
     secrets:
       - db_user
       - db_password
       - ssl_cert
       - ssl_key
-    command: "gunicorn --certfile /run/secrets/ssl_cert --keyfile /run/secrets/ssl_key -b 0.0.0.0:5000 web_app:app"
+    # command: "gunicorn --certfile /run/secrets/ssl_cert --keyfile /run/secrets/ssl_key -b 0.0.0.0:5050 web_app:app"
+    command: "gunicorn -b 0.0.0.0:5050 web_app:app"
 
   node:
     environment:
       - NODE_ENV=production
     command: sh -c "npm install; npx webpack build"
+
+  nginx:
+    image: nginx:alpine
+    network_mode: "host"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./SSLFiles/cert.pem:/run/secrets/ssl_cert:ro
+      - ./SSLFiles/key.pem:/run/secrets/ssl_key:ro
+    # secrets:
+    #   - ssl_cert
+    #   - ssl_key
+    depends_on:
+      - python
 
 secrets:
   db_user:
