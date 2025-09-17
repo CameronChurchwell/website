@@ -4,13 +4,11 @@
 
 {% block content %}
 
-{% set content_height = 5000 %}
-
 <script defer src="{{url_for('static', filename='build/main.js') }}"></script>
 <script defer src="{{url_for('static', filename='build/shape.js') }}"></script>
 
 <div id="main-content">
-    <div id="content-container" style="height: {{ content_height }}px; margin-bottom: 2000px;">
+    <div id="content-container">
         <div class="grid-x grid-padding-x" style="height: 100%;">
             <div id="shape-container-cell">
                 <div id="shape-container" data-sticky-container data-dynamic-height="false">
@@ -55,15 +53,15 @@
                         <div class="main-content-callout">
                             <h2><b>About Me</b></h2>
                             {% filter markdown %}
-Hi, my name is Cameron Churchwell, I'm a first year PhD student at the University of Illinois at Urbana Champaign. I've been programming since fifth grade when I discovered the
+Hi, my name is Cameron Churchwell, I'm a second year PhD student at the University of Illinois at Urbana Champaign. I've been programming since fifth grade when I discovered the
 [ComputerCraft](https://github.com/dan200/ComputerCraft) mod for Minecraft.
 
-Now I'm doing research in machine learning for audio applications, with a current focus on learned DSP filters and audio segmentation.
+Now I'm doing research in machine learning for audio applications, with a current focus on learned DSP filters and neural audio codecs.
 
 In my free time I work on ridiculous and \(sometimes\) useful side projects, play trombone (currently looking for groups), read,
 and play games with my friends.
 
-Oh, and if you're on desktop, you can see the cool optical illusion I made on the left side of the screen as you scroll!
+If you're on desktop, you should see a fun optical illusion I've animated as you scroll down this page!
                             {% endfilter %}
                         </div>
                     </div>
@@ -71,14 +69,10 @@ Oh, and if you're on desktop, you can see the cool optical illusion I made on th
                         <div class="main-content-callout">
                             <h2><b>Research</b></h2>
                             {% filter markdown %}
-My prior work with [Max Morrison](https://www.maxrmorrison.com) and [Bryan Pardo](https://bryan-pardo.github.io) focused
-on neural speech editing, specifically on creating better representations for pronunciation information and exploring controllable speech synthesis.
+My primary research interest is improving the compute efficiency of audio machine learning via DSP-inspired techniques. This includes my recent WASPAA publication on learned comb filters
+as a replacement for time-frequency transforms. I'm also interested in low level optimizations such as novel GPU kernels and more efficient data processing and pipelines.
 
-I now work in the Audio Lab at UIUC with Professors Paris Smaragdis and Minje Kim.
-
-My main interests right now are in learnable DSP filters, audio segmentation, and controllable speech editing.
-
-I also want to develop tools to help people with speech sound disorders.
+My prior work also includes a focus on neural speech editing and pronunciation encoding, and I hope to one day develop tools to help people with speech disorders.
                             {% endfilter %}
                         </div>
                     </div>
@@ -88,6 +82,7 @@ I also want to develop tools to help people with speech sound disorders.
                             {% filter markdown %}
 \* indicates equal contributions
 
+- C. Churchwell, M. Kim, and P. Smaragdis. "Combolutional Neural Networks," WASPAA, October 2025.
 - C. Churchwell\*, M. Morrison\*, and B. Pardo, "High-Fidelity Neural Phonetic Posteriorgrams," ICASSP 2024 Workshop on Explainable Machine Learning for Speech and Audio, April 2024.
 - M. Morrison, C. Churchwell, N. Pruyne, and B. Pardo, "Fine-Grained and Interpretable Neural Speech Editing," Interspeech, September 2024.
                             {% endfilter %}
@@ -97,6 +92,8 @@ I also want to develop tools to help people with speech sound disorders.
                         <div class="main-content-callout">
                             <h2><b>Work/Teaching Experiences</b></h2>
                             {% filter markdown %}
+- Internships
+    - Audio Machine Learning Research Intern, Bose (Summer 2025)
 - Teaching
     - Teaching Assistant, CS449 Deep Learning (Winter 2023)
     - Teaching Assistant, CS449 Deep Learning (Spring 2023)

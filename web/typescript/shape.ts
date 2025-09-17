@@ -864,6 +864,7 @@ $(function() {
 $(window).on('resize', function(event) {
     setScrollHeight();
     scrollTotal = Math.floor($('#content').height()! * 6/7);
+    setShapeRotation();
 });
 
 var autoScrolling = false;

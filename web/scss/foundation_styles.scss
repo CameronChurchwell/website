@@ -92,6 +92,20 @@
     left: 0px !important;
 }
 
+#content-container {
+    @include breakpoint(large up) {
+        height: 4000px;
+    }
+
+    @include breakpoint(medium only) {
+        height: 5000px;
+    }
+
+    @include breakpoint(medium up) {
+        margin-bottom: 2000px;
+    }
+}
+
 .main-content-cell {
     @include xy-cell(1 of 7, $gutter-type: padding, $gutters: 50, $vertical: true);
 }
