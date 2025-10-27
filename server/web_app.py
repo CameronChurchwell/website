@@ -95,6 +95,8 @@ def js_static(file_name):
 
 @app.route("/presentations/<path:presentation_name>", methods=["GET"])
 def presentation(presentation_name):
+    if request.path.endswith('.html'):
+        return send_from_directory('../presentations/', presentation_name)
     if not request.path.endswith('/'):
         return redirect(request.path + '/')
     return send_from_directory('../presentations/' + presentation_name, 'main.html')

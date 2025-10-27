@@ -33,7 +33,7 @@ services:
   node:
     environment:
       - NODE_ENV=production
-    command: sh -c "npm install; npx webpack build"
+    command: sh -c "npm install --include=dev; npx webpack build"
 
   nginx:
     image: nginx:alpine
