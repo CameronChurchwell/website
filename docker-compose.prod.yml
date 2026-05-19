@@ -48,6 +48,16 @@ services:
     depends_on:
       - python
 
+  webdav:
+    image: bytemark/webdav:latest
+    restart: unless-stopped
+    env_file:
+      - ./webdav.secret
+    volumes:
+      - /HDD1/webdav:/var/lib/dav
+    ports:
+      - "127.0.0.1:8081:80"
+
 secrets:
   db_user:
     file: ./db_user.secret
